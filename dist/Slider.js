@@ -299,3 +299,7 @@ var Slider = React.createClass({
   }
 })
 
+//If node env
+if(module){
+  module.exports = Slider;
+}
