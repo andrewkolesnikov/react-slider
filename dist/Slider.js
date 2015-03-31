@@ -1,4 +1,8 @@
-var Slider = React.createClass({displayName: 'Slider',
+/**
+ * @jsx React.DOM
+ */
+
+var Slider = React.createClass({
   propTypes: {
     outerWidth: React.PropTypes.number,
     width: React.PropTypes.number.isRequired,
@@ -91,6 +95,10 @@ var Slider = React.createClass({displayName: 'Slider',
     stateObject.rightNumber = parseInt(setRightNumber, 10);
     var addedState = this.addPositionsFromNumbers(stateObject, this.props.rightNumber);
     this.setState(addedState);
+  },
+  componentWillUnmount: function() {
+    document.removeEventListener("mouseup", this.sliderUpdater);
+    document.removeEventListener("touchend", this.sliderUpdater);
   },
   // a function of props and state
   moveConditionsMet: function(state) {
@@ -245,49 +253,49 @@ var Slider = React.createClass({displayName: 'Slider',
     var leftActive = this.state.leftActive ? "active" : "";
     var rightActive = this.state.rightActive ? "active" : "";
     var rightUnit = (this.state.rightNumber >= this.props.rightNumber && this.props.subset) ? '>' + this.props.unit : this.props.unit;
-    return React.DOM.div( {className:"slider-container clearfix", style:{width: this.props.outerWidth}},
-    React.DOM.div( {className:"numerical-container"},
-      React.DOM.div( {className:"numerical-left"},
-        React.DOM.input( {type:"text",
-               className:"leftNumber",
-               onFocus:this.handleFocus,
-               onBlur:this.handleBlur,
-               onChange:this.handleChange,
-               value:this.props.unit + this.state.leftNumber})
-      )
-    ),
-    React.DOM.div( {className:"slider-control-container clearfix", style:{width: this.props.width}},
-      React.DOM.div( {className:"full-slider",
-           ref:"sliderBar",
-           onClick:this.handleSliderClick, style:{width: this.props.width}},
-        React.DOM.div( {className:"slider",
-             style:{left: this.state.left, width: this.props.width - this.state.left - this.state.right}})
-      ),
-      React.DOM.div( {className:"handle-container clearfix", style:{width: this.props.width}},
-        React.DOM.div( {ref:"leftSlider", className:"left " + leftActive,
-             style:{left: this.state.left},
-             onTouchStart:this.handleMouseDown,
-             onMouseDown:this.handleMouseDown}
+    return React.DOM('div', {className: "slider-container clearfix", style: {width: this.props.outerWidth}}, [
+    React.DOM('div', {className: "numerical-container"}, [
+      React.DOM('div', {className: "numerical-left"}, [
+        React.DOM('input', {type: "text",
+               className: "leftNumber",
+               onFocus: this.handleFocus,
+               onBlur: this.handleBlur,
+               onChange: this.handleChange,
+               value: this.props.unit + this.state.leftNumber})
+      ])
+    ]),
+    React.DOM('div', {className: "slider-control-container clearfix", style: {width: this.props.width}}, [
+      React.DOM('div', {className: "full-slider",
+           ref: "sliderBar",
+           onClick: this.handleSliderClick, style: {width: this.props.width}}, [
+        React.DOM('div', {className: "slider",
+             style: {left: this.state.left, width: this.props.width - this.state.left - this.state.right}})
+      ]),
+      React.DOM('div', {className: "handle-container clearfix", style: {width: this.props.width}}, [
+        React.DOM('div', {ref: "leftSlider", className: "left " + leftActive,
+             style: {left: this.state.left},
+             onTouchStart: this.handleMouseDown,
+             onMouseDown: this.handleMouseDown}
         ),
-        React.DOM.div( {ref:"rightSlider", className:"right " + rightActive,
-             style:{right: this.state.right},
-             onTouchStart:this.handleMouseDown,
-             onTouchMove:this.handleTouchMove,
-             onMouseDown:this.handleMouseDown}
+        React.DOM('div', {ref: "rightSlider", className: "right " + rightActive,
+             style: {right: this.state.right},
+             onTouchStart: this.handleMouseDown,
+             onTouchMove: this.handleTouchMove,
+             onMouseDown: this.handleMouseDown}
         )
-      )
-    ),
-    React.DOM.div( {className:"numerical-container"},
-      React.DOM.div( {className:"numerical-right"},
-        React.DOM.input( {type:"text",
-               className:"rightNumber",
-               onFocus:this.handleFocus,
-               onBlur:this.handleBlur,
-               onChange:this.handleChange,
-               value:rightUnit + this.state.rightNumber})
-      )
-    )
-  )
+      ])
+    ]),
+    React.DOM('div', {className: "numerical-container"}, [
+      React.DOM('div', {className: "numerical-right"}, [
+        React.DOM('input', {type: "text",
+               className: "rightNumber",
+               onFocus: this.handleFocus,
+               onBlur: this.handleBlur,
+               onChange: this.handleChange,
+               value: rightUnit + this.state.rightNumber})
+      ])
+    ])
+  ])
   }
 })
 

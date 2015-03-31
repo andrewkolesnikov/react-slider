@@ -1,0 +1,40 @@
+{
+  "name": "react-slider",
+  "version": "1.0.0",
+  "description": "A range slider for react",
+  "main": "dist/Slider.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "gulp test",
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/B-Stefan/react-slider.git"
+  },
+  "keywords": [
+    "React",
+    "Slider",
+    "range-slider"
+  ],
+  "author": [
+    "Gareth Tan",
+    "Jose Diaz-Gonzalez",
+    "Matt Hodgson",
+    "fraserxu",
+    "garetht",
+    "Stefan B."
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/B-Stefan/react-slider/issues"
+  },
+  "homepage": "https://github.com/B-Stefan/react-slider",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-open": "^0.3.2",
+    "gulp-rename": "^1.2.0"
+  }
+}
