@@ -32,6 +32,9 @@
     "url": "https://github.com/B-Stefan/react-slider/issues"
   },
   "homepage": "https://github.com/B-Stefan/react-slider",
+  "dependencies": {
+    "react": "^0.13.1"
+  },
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-open": "^0.3.2",
