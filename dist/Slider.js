@@ -1,3 +1,5 @@
+var React = require("react");
+
 /**
  * @jsx React.DOM
  */
@@ -253,10 +255,10 @@ var Slider = React.createClass({
     var leftActive = this.state.leftActive ? "active" : "";
     var rightActive = this.state.rightActive ? "active" : "";
     var rightUnit = (this.state.rightNumber >= this.props.rightNumber && this.props.subset) ? '>' + this.props.unit : this.props.unit;
-    return React.DOM('div', {className: "slider-container clearfix", style: {width: this.props.outerWidth}}, [
-    React.DOM('div', {className: "numerical-container"}, [
-      React.DOM('div', {className: "numerical-left"}, [
-        React.DOM('input', {type: "text",
+    return React.createElement('div', {className: "slider-container clearfix", style: {width: this.props.outerWidth}}, [
+    React.createElement('div', {className: "numerical-container"}, [
+      React.createElement('div', {className: "numerical-left"}, [
+        React.createElement('input', {type: "text",
                className: "leftNumber",
                onFocus: this.handleFocus,
                onBlur: this.handleBlur,
@@ -264,20 +266,20 @@ var Slider = React.createClass({
                value: this.props.unit + this.state.leftNumber})
       ])
     ]),
-    React.DOM('div', {className: "slider-control-container clearfix", style: {width: this.props.width}}, [
-      React.DOM('div', {className: "full-slider",
+    React.createElement('div', {className: "slider-control-container clearfix", style: {width: this.props.width}}, [
+      React.createElement('div', {className: "full-slider",
            ref: "sliderBar",
            onClick: this.handleSliderClick, style: {width: this.props.width}}, [
-        React.DOM('div', {className: "slider",
+        React.createElement('div', {className: "slider",
              style: {left: this.state.left, width: this.props.width - this.state.left - this.state.right}})
       ]),
-      React.DOM('div', {className: "handle-container clearfix", style: {width: this.props.width}}, [
-        React.DOM('div', {ref: "leftSlider", className: "left " + leftActive,
+      React.createElement('div', {className: "handle-container clearfix", style: {width: this.props.width}}, [
+        React.createElement('div', {ref: "leftSlider", className: "left " + leftActive,
              style: {left: this.state.left},
              onTouchStart: this.handleMouseDown,
              onMouseDown: this.handleMouseDown}
         ),
-        React.DOM('div', {ref: "rightSlider", className: "right " + rightActive,
+        React.createElement('div', {ref: "rightSlider", className: "right " + rightActive,
              style: {right: this.state.right},
              onTouchStart: this.handleMouseDown,
              onTouchMove: this.handleTouchMove,
@@ -285,9 +287,9 @@ var Slider = React.createClass({
         )
       ])
     ]),
-    React.DOM('div', {className: "numerical-container"}, [
-      React.DOM('div', {className: "numerical-right"}, [
-        React.DOM('input', {type: "text",
+    React.createElement('div', {className: "numerical-container"}, [
+      React.createElement('div', {className: "numerical-right"}, [
+        React.createElement('input', {type: "text",
                className: "rightNumber",
                onFocus: this.handleFocus,
                onBlur: this.handleBlur,

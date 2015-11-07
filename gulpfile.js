@@ -12,7 +12,9 @@ var paths ={
 
 gulp.task('build', function() {
     return gulp.src(paths.src + '**/*.jsx')
-        .pipe(jsx())
+        .pipe(jsx({
+          factory: "React.createElement"
+        }))
         .pipe( rename(function (path) {
             path.extname = ".js"
         }))
@@ -28,4 +30,3 @@ gulp.task('test',['bower-install', 'build'], function(){
     gulp.src(paths.test + '**/*.html')
         .pipe(open());
 });
-
