@@ -47,7 +47,7 @@ var Slider = React.createClass({
       storedNumber: this.props.leftNumber,
       leftActive: false,
       rightActive: false,
-      isTouch: 'ontouchstart' in document,
+      isTouch: (typeof document !== "undefined")  &&  ('ontouchstart' in document),
       sliderStartX: undefined,
       sliderEndX: undefined
     }
@@ -79,13 +79,18 @@ var Slider = React.createClass({
       leftActive: false,
       rightActive: false
     });
-    document.removeEventListener("mousemove", this.mouseDownHelper);
-    document.removeEventListener("touchmove", this.mouseDownHelper);
+
+    if (typeof document !== "undefined") {
+      document.removeEventListener("mousemove", this.mouseDownHelper);
+      document.removeEventListener("touchmove", this.mouseDownHelper);
+    }
   },
 
   componentDidMount: function() {
-    document.addEventListener("mouseup", this.sliderUpdater);
-    document.addEventListener("touchend", this.sliderUpdater);
+    if (typeof document !== "undefined") {
+      document.addEventListener("mouseup", this.sliderUpdater);
+      document.addEventListener("touchend", this.sliderUpdater);
+    }
     var stateObject = {};
     stateObject.leftNumber = parseInt(this.props.initialLeftNumber || this.props.leftNumber, 10);
     var setRightNumber;
@@ -99,8 +104,10 @@ var Slider = React.createClass({
     this.setState(addedState);
   },
   componentWillUnmount: function() {
-    document.removeEventListener("mouseup", this.sliderUpdater);
-    document.removeEventListener("touchend", this.sliderUpdater);
+    if (typeof document !== "undefined") {
+      document.removeEventListener("mouseup", this.sliderUpdater);
+      document.removeEventListener("touchend", this.sliderUpdater);
+    }
   },
   // a function of props and state
   moveConditionsMet: function(state) {
@@ -246,9 +253,10 @@ var Slider = React.createClass({
     this.mouseDownHelper = function(event) {
       that.handleMouseMove(event, targetClass, initialX, originalPosition);
     }
-
-    document.addEventListener("mousemove", this.mouseDownHelper);
-    document.addEventListener("touchmove", this.mouseDownHelper);
+    if (typeof document !== "undefined") {
+      document.addEventListener("mousemove", this.mouseDownHelper);
+      document.addEventListener("touchmove", this.mouseDownHelper);
+    }
   },
 
   render: function() {
